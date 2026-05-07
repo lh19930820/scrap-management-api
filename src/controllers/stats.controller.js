@@ -30,13 +30,12 @@ export const getDailyStats = async (req, res) => {
         });
     }
 };
+
 export const getProductStats = async (req, res) => {
     try {
-        const stats = await getProductStatsService();
+        const stats = await getProductStatsService(req.query);
 
-        return res.json({
-            data: stats
-        });
+        return res.json(stats);
     } catch (error) {
         return res.status(500).json({
             message: error.message
