@@ -5,6 +5,7 @@ import productRoute from './routes/product.route.js';
 import authRoute from "./routes/auth.route.js";
 import transactionRoute from './routes/transaction.route.js';
 import inventoryRoute from './routes/inventory.route.js';
+import statsRoute from './routes/stats.route.js';
 
 const app = express();
 
@@ -15,5 +16,5 @@ app.use('/api/products', productRoute);
 app.use("/api/auth", authRoute);
 app.use('/api/transactions', transactionRoute);
 app.use('/api/inventories', inventoryRoute);
-
+app.use('/api/stats', statsRoute);
 export default app;
