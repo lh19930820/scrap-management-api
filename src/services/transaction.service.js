@@ -1,5 +1,7 @@
 import Transaction from '../models/transaction.model.js';
 
+import { updateInventoryService } from './inventory.service.js';
+
 export const createTransactionService = async (payload, userId) => {
     const items = payload.items.map((item) => ({
         ...item,
@@ -8,6 +10,9 @@ export const createTransactionService = async (payload, userId) => {
     }));
 
     const grandTotal = items.reduce((sum, item) => sum + item.total, 0);
+
+    // UPDATE INVENTORY
+    await updateInventoryService(payload.type, items);
 
     const transaction = await Transaction.create({
         type: payload.type,
