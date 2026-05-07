@@ -2,6 +2,7 @@ import {
     createProductService,
     deleteProductService,
     getProductsService,
+    getProductByIdService,
     updateProductService
 } from '../services/product.service.js';
 
@@ -29,6 +30,20 @@ export const getProducts = async (req, res) => {
         });
     } catch (error) {
         return res.status(500).json({
+            message: error.message
+        });
+    }
+};
+
+export const getProductById = async (req, res) => {
+    try {
+        const product = await getProductByIdService(req.params.id);
+
+        return res.json({
+            data: product
+        });
+    } catch (error) {
+        return res.status(404).json({
             message: error.message
         });
     }
